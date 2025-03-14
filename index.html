@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GLOF Watch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="template/style.css" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js"></script>
+    <link rel="icon" href="data/ndma_logo.png" type="image/icon type">
+</head>
+<!-- _______________________________________________________________________________________________________________________________________________________ -->
+
+<body>
+    <nav class="navbar navbar-light" style="background: linear-gradient(0deg, rgba(92,130,139,1) 22%, rgba(93,93,93,1) 100%); outline: solid black 2px; margin-top:3px; margin-left:2px; width: 99.7%;">
+        <img id="logo" src="data/ndma_logo.webp" alt="NDMA Logo"><img />
+        <h1>NATIONAL GLOF WATCH
+            <img id="glof-icon" src="data/glof.gif" alt="GLOF GIF"><img />
+        </h1>
+    </nav>
+    <div id="map"></div>
+      <!-- _____________________________________________________________________________________________________________________________________________________________ -->
+  <div id="menu">
+    <h3><u>Menu</u></h3><br>
+    <!-- ________________________________________________________________________________________________________________________________________________________________ -->
+    <div class="accordion" id="menu-accordion">
+        <!--________________________ Badswat________________________ -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="badswat-heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#badswat-collapse" aria-expanded="true" aria-controls="badswat-collapse" 
+                onclick="accordionZoom(map1, 'badswat-line', 8, 36.2923495548913, 73.2770059513156)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z" />
+                    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z" />
+                </svg>
+                <span class="ms-2"><u>Badswat</u></span>
+            </button>
+            
+            </h2>
+            <div id="badswat-collapse" class="accordion-collapse collapse" aria-labelledby="badswat-heading">
+                <div class="accordion-body">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="badswat-glacier-toggle" data-popup="true" data-layer="badswat-glacier-layer" onclick="toggleLayersVisibility(map1, ['badswat-glacier-layer', 'badswat-glacier-line'])">
+                        <label class="form-check-label" for="badswat-glacier-toggle">Badswat Glacier</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="badswat-lake-toggle" data-popup="true" data-layer="badswat-lake-layer" onclick="toggleLayersVisibility(map1, ['badswat-lake-layer'])">
+                        <label class="form-check-label" for="badswat-lake-toggle">Badswat Lake</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="badswat-fault-toggle" data-popup="true" data-layer="badswat-fault-layer" onclick="toggleLayersVisibility(map1, ['badswat-faultline-layer'])">
+                        <label class="form-check-label" for="badswat-fault-toggle">Faultline</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="ishkoman-river-toggle" data-popup="true" data-layer="ishkomen-river-layer" onclick="toggleLayersVisibility(map1, ['ishkoman-river-layer'])">
+                        <label class="form-check-label" for="ishkoman-river-toggle">Ishkomen River</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="karambar-lake-toggle" data-popup="true" data-layer="karambar-lake-layer" onclick="toggleLayersVisibility(map1, ['karambar-lake-layer'])">
+                        <label class="form-check-label" for="karambar-lake-toggle">Karambar Lake</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="badswat-risk-toggle" data-popup="true" data-layer="badswat-risk-layer" onclick="toggleLayersVisibility(map1, ['badswat-risk-layer'])">
+                        <label class="form-check-label" for="badswat-risk-toggle">Risk Zonation</label>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- ________________________Hiranchi________________________ -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="hiranchi-heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#hiranchi-collapse" aria-expanded="true" aria-controls="hiranchi-collapse" 
+                onclick="accordionZoom(map1, 'hiranchi-line', 8, 36.20703091552801, 74.32939869041434)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z" />
+                    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z" />
+                </svg>
+                <span class="ms-2"><u>Hinarchi</u></span>
+            </button>
+            </h2>
+            <div id="hiranchi-collapse" class="accordion-collapse collapse" aria-labelledby="hiranchi-heading">
+                <div class="accordion-body">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="hiranchi-glacier-toggle" data-popup="true" data-layer="hiranchi-glacier-layer" onclick="toggleLayersVisibility(map1, ['hiranchi-glacier-layer', 'hiranchi-glacier-line'])">
+                        <label class="form-check-label" for="hiranchi-glacier-toggle">Hinarchi Glacier</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="hiranchi-lake-toggle" data-popup="true" data-layer="hiranchi-lake-layer" onclick="toggleLayersVisibility(map1, ['hiranchi-lake-layer'])">
+                        <label class="form-check-label" for="hiranchi-lake-toggle">Hinarchi Lake</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="hiranchi-risk-toggle" data-popup="true" data-layer="hiranchi-risk-layer" onclick="toggleLayersVisibility(map1, ['hiranchi-risk-layer'])">
+                        <label class="form-check-label" for="hiranchi-risk-toggle">Risk Zonation</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- _______________________Basemaps________________________ -->
+         <div id="basemapbtn-div">
+            <span id="basemap-heading"><u>Basemaps</u></span>
+            <div class="basemapbtns">
+                <div class="basemapbtn-option">
+                    <img id="hybrid-bm" src="data/basemap-icons/hybrid.webp" alt="Hybrid" onclick="changeBasemap('hybrid')">
+                    <span>Hybrid</span>
+                </div>
+                <div class="basemapbtn-option">
+                    <img id="terrain-bm" src="data/basemap-icons/terrain.webp" alt="Terrain" onclick="changeBasemap('terrain')">
+                    <span>Terrain</span>
+                </div>
+                <div class="basemapbtn-option">
+                    <img id="light-bm" src="data/basemap-icons/osm.webp" alt="Light" onclick="changeBasemap('light')">
+                    <span>Light</span>
+                </div>
+                <div class="basemapbtn-option">
+                    <img id="dark-bm" src="data/basemap-icons/dark.webp" alt="Dark" onclick="changeBasemap('dark')">
+                    <span>Dark</span>
+                </div>
+            </div>
+         </div>
+    </div>
+
+
+    <!-- _______________________________________________________________________________________________________________________________________________________ -->
+    <script src="template/buttons.js"></script>
+    <script src="template/controls.js"></script>
+    <script src="template/map_init.js"></script>
+    <script src="data/geojsons/badswat/badswat_glaciers.js"></script>
+    <script src="data/geojsons/badswat/badswat_lake.js"></script>
+    <script src="data/geojsons/badswat/badswat_faultline.js"></script>
+    <script src="data/geojsons/badswat/ishkoman_river.js"></script>
+    <script src="data/geojsons/badswat/karambar_lake.js"></script>
+    <script src="data/geojsons/badswat/risk_zonation_badswat.js"></script>
+    <script src="data/geojsons/hinarchi/hinarchi_glacier.js"></script>
+    <script src="data/geojsons/hinarchi/hinarchi_lake.js"></script>
+    <script src="data/geojsons/hinarchi/hinarchi_zonation.js"></script>
+    <script src="template/map_layers.js"></script>
+    <script src="template/map_layer_legends.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+<!-- _______________________________________________________________________________________________________________________________________________________ -->
+<!-- _______________________________________________________________________________________________________________________________________________________ -->
+<!-- _______________________________________________________________________________________________________________________________________________________ -->
