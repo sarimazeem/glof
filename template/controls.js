@@ -1,3 +1,13 @@
+document.getElementById("menuToggle").addEventListener("click", function() {
+    var menu = document.getElementById("menu");
+    
+    if (menu.style.display === "none" || menu.style.display === "") {
+      menu.style.display = "block"; // Show menu
+    } else {
+      menu.style.display = "none"; // Hide menu
+    }
+  });
+//____________________________________________________________________________________________________________________________________________________________________________________
 function setMapCenter(map, longitude, latitude, zoomLevel = null, bearing = 0, pitch = 0) {
     // Use map.flyTo() for smooth transition
     map.flyTo({
